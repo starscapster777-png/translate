@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kır Bahçesi Çeviri | Cottagecore Makine Çevirisi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Arka Plan Orman Görselleri (Yumuşak Geçiş Katmanları) -->
+  <div id="bgLayer1" class="bg-forest-layer active"></div>
+  <div id="bgLayer2" class="bg-forest-layer"></div>
+
+  <!-- Arka Plan Orman Karartma Katmanı -->
+  <div class="bg-overlay"></div>
+
+  <!-- Arka Plan Doğa/Orman Ambiyans Sesi Çalar -->
+  <div class="audio-control-bar">
+    <div class="audio-status">
+      <span class="music-icon" id="soundIcon">🍃</span>
+      <span class="audio-label" id="soundLabel">Orman Fısıltısı (Çalıyor)</span>
+      <span class="season-badge" id="seasonBadge">🍂 Sonbahar</span>
+    </div>
+    <div class="audio-actions">
+      <button id="toggleAudioBtn" class="pill-btn" title="Sesi Duraklat / Başlat">
+        <span id="btnAudioIcon">⏸️</span> <span id="btnAudioText">Sesi Duraklat</span>
+      </button>
+      <div class="volume-slider-wrap">
+        <span class="vol-icon">🔉</span>
+        <input type="range" id="volSlider" min="0" max="1" step="0.05" value="0.4" title="Ses Düzeyi">
+      </div>
+    </div>
+  </div>
+
+  <div class="cottage-container">
+    <!-- Başlık Bölümü -->
+    <header class="app-header">
+      <div class="header-flora">🌿 🌸 🍂</div>
+      <h1 class="brand-title">Kır Bahçesi Çeviri</h1>
+      <p class="brand-subtitle">Gemini Yapay Zeka Destekli Huzurlu Makine Çevirisi</p>
+    </header>
+
+    <!-- Ayarlar Paneli: Dil Seçimi, Alan, Üslup -->
+    <section class="controls-panel">
+      <!-- Dil Seçimi -->
+      <div class="control-group lang-group">
+        <div class="select-field">
+          <label for="sourceLang">Kaynak Dil</label>
+          <div class="custom-select-wrapper">
+            <select id="sourceLang">
+              <option value="Otomatik">🌱 Otomatik Algıla</option>
+              <option value="İngilizce" selected>🇬🇧 İngilizce</option>
+              <option value="Türkçe">🇹🇷 Türkçe</option>
+              <option value="Almanca">🇩🇪 Almanca</option>
+              <option value="Fransızca">🇫🇷 Fransızca</option>
+              <option value="İspanyolca">🇪🇸 İspanyolca</option>
+              <option value="İtalyanca">🇮🇹 İtalyanca</option>
+              <option value="Rusça">🇷🇺 Rusça</option>
+              <option value="Japonca">🇯🇵 Japonca</option>
+              <option value="Arapça">🇸🇦 Arapça</option>
+            </select>
+          </div>
+        </div>
+
+        <button id="swapLangsBtn" class="swap-btn" title="Dilleri Değiştir" aria-label="Dilleri Değiştir">
+          ⇄
+        </button>
+
+        <div class="select-field">
+          <label for="targetLang">Hedef Dil</label>
+          <div class="custom-select-wrapper">
+            <select id="targetLang">
+              <option value="Türkçe" selected>🇹🇷 Türkçe</option>
+              <option value="İngilizce">🇬🇧 İngilizce</option>
+              <option value="Almanca">🇩🇪 Almanca</option>
+              <option value="Fransızca">🇫🇷 Fransızca</option>
+              <option value="İspanyolca">🇪🇸 İspanyolca</option>
+              <option value="İtalyanca">🇮🇹 İtalyanca</option>
+              <option value="Rusça">🇷🇺 Rusça</option>
+              <option value="Japonca">🇯🇵 Japonca</option>
+              <option value="Arapça">🇸🇦 Arapça</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alan ve Üslup Seçimi -->
+      <div class="control-group filter-group">
+        <div class="select-field">
+          <label for="domainSelect">Uzmanlık Alanı</label>
+          <div class="custom-select-wrapper">
+            <select id="domainSelect">
+              <option value="genel" selected>🌾 Genel (Standart)</option>
+              <option value="hukuk">📜 Hukuk & Sözleşme</option>
+              <option value="tip">🌿 Tıp & Sağlık</option>
+              <option value="teknik">⚙️ Teknik & Bilişim</option>
+              <option value="edebi">📖 Edebi & Sanatsal</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="select-field">
+          <label for="toneSelect">Hitap & Üslup</label>
+          <div class="custom-select-wrapper">
+            <select id="toneSelect">
+              <option value="resmi" selected>🎩 Resmi (Siz Dili)</option>
+              <option value="gundelik">☕ Gündelik (Samimi, Sen)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Kullanıcının Mevsim ve Tema Seçimi -->
+        <div class="select-field">
+          <label for="seasonSelect">Mevsim & Atmosfer</label>
+          <div class="custom-select-wrapper">
+            <select id="seasonSelect" title="Düşen yaprakları ve 20s'lik orman resimlerini seçilen mevsime ayarlar">
+              <option value="auto">⏳ Otomatik (Şu Anki Ay)</option>
+              <option value="autumn">🍂 Sonbahar (Kızıl & Altın)</option>
+              <option value="winter">❄️ Kış (Kar & Buzul Ormanı)</option>
+              <option value="spring">🌱 İlkbahar (Taze Yeşil Filizler)</option>
+              <option value="summer">☀️ Yaz (Güneşli Sıcak Orman)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ana Çeviri Kutuları (2 Sütunlu) -->
+    <main class="translation-layout">
+      <!-- Kaynak Metin Kartı -->
+      <div class="text-card source-card">
+        <!-- Yaprak Çerçeve Köşe Süsleri -->
+        <span class="vine-corner corner-tl">🌿</span>
+        <span class="vine-corner corner-tr">🍂</span>
+        <span class="vine-corner corner-bl">🍃</span>
+        <span class="vine-corner corner-br">🌱</span>
+
+        <!-- Yürüyen Mini Orman Hayvanı -->
+        <div class="creature-walker" id="sourceCreature" title="Kır dostu">🐿️</div>
+
+        <div class="card-top">
+          <span class="card-label">Orijinal Metin</span>
+          <div class="card-tools">
+            <button id="clearSourceBtn" class="tool-btn" title="Metni Temizle">Temizle</button>
+            <span class="char-count" id="sourceCount">0 karakter</span>
+          </div>
+        </div>
+        <textarea id="sourceText" placeholder="Çevirmek istediğiniz metni buraya yazın veya yapıştırın..." rows="10"></textarea>
+      </div>
+
+      <!-- Hedef Metin Kartı -->
+      <div class="text-card target-card">
+        <!-- Yaprak Çerçeve Köşe Süsleri -->
+        <span class="vine-corner corner-tl">🌱</span>
+        <span class="vine-corner corner-tr">🍃</span>
+        <span class="vine-corner corner-bl">🍂</span>
+        <span class="vine-corner corner-br">🌿</span>
+
+        <!-- Yürüyen Mini Orman Hayvanı -->
+        <div class="creature-walker" id="targetCreature" title="Kır dostu">🦔</div>
+
+        <div class="card-top">
+          <span class="card-label">Çeviri Sonucu</span>
+          <div class="card-tools">
+            <button id="copyTargetBtn" class="tool-btn copy-btn" title="Çeviriyi Kopyala">
+              <span class="copy-icon">📋</span> Kopyala
+            </button>
+          </div>
+        </div>
+        <div class="output-wrapper">
+          <textarea id="targetText" readonly placeholder="Çeviri burada görüntülenecektir..." rows="10"></textarea>
+          <!-- Yükleniyor / Filizleniyor Göstergesi -->
+          <div class="loading-overlay" id="loadingOverlay">
+            <div class="sprout-spinner">🌱</div>
+            <p>Sözcükler kır bahçesinde olgunlaşıyor...</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Hata Bildirim Kutusu -->
+    <div id="errorBanner" class="error-banner" style="display: none;">
+      <div class="error-icon">⚠️</div>
+      <div class="error-body">
+        <strong id="errorTitle">Bir Hata Meydana Geldi</strong>
+        <p id="errorMessage">Açıklama</p>
+      </div>
+      <button id="closeErrorBtn" class="close-error" title="Kapat">×</button>
+    </div>
+
+    <!-- Eylem Çubuğu: Anlık Çeviri Durumu ve Terimce Butonu -->
+    <div class="action-bar">
+      <div class="live-status-pill" id="liveStatus">
+        <span class="live-dot"></span> Anlık Çeviri Aktif (Yazarken Çevirir)
+      </div>
+
+      <button id="toggleGlossaryBtn" class="btn-wood secondary-btn">
+        📖 Terimce (Glossary) <span id="glossaryToggleIcon">▼</span>
+      </button>
+    </div>
+
+    <!-- Terimce (Glossary) Açılır Paneli -->
+    <section id="glossarySection" class="glossary-section" style="display: none;">
+      <div class="glossary-header">
+        <h3>🌿 Özel Terimce (Sözlük)</h3>
+        <p class="glossary-desc">
+          Modelin çeviride mutlaka kullanmasını istediğiniz terimleri <code>kaynak terim = hedef terim</code> şeklinde her satıra bir tane olacak şekilde yazın:
+        </p>
+      </div>
+      <textarea id="glossaryText" placeholder="Örnek:&#10;machine learning = yapay öğrenme&#10;pipeline = veri boru hattı&#10;heart attack = miyokard enfarktüsü" rows="4"></textarea>
+    </section>
+
+    <!-- Alt Bilgi (Footer) -->
+    <footer class="cottage-footer">
+      <p>Doğadan ilham alan huzurlu çeviri deneyimi • Gemini 2.5 Flash ile güçlendirilmiştir 🍃</p>
+    </footer>
+  </div>
+
+  <!-- Toast Bildirimi (Kopyalandı vb.) -->
+  <div id="toast" class="toast">Kopyalandı!</div>
+
+  <script src="audio.js"></script>
+  <script src="leaves.js"></script>
+  <script src="creatures.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
+

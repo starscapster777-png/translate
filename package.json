@@ -1,0 +1,17 @@
+{
+  "name": "gemini-ceviri",
+  "version": "1.0.0",
+  "description": "Gemini API ile Cottagecore temalı makine çevirisi uygulaması",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  }
+}
+
+
